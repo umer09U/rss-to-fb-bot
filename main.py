@@ -1,15 +1,14 @@
-
 import os
 import feedparser
 import requests
 
-# GitHub Secrets سے معلومات لینا
+# GitHub Secrets se information lena
 GEMINI_API_KEY = os.environ.get("GEMINI_API_KEY")
 FB_PAGE_ACCESS_TOKEN = os.environ.get("FB_PAGE_ACCESS_TOKEN")
 FB_PAGE_ID = os.environ.get("FB_PAGE_ID")
 
-# یہاں اپنی نیوز ویب سائٹ کا اصل RSS فیڈ لنک ڈالیں
-RSS_URL = "https://your-rss-feed-url.com/rss"
+# Aap ka RSS feed link yahan add kar diya gaya hai
+RSS_URL = "https://rss.app/feeds/mpSmj6kk5duNvAea.xml"
 
 
 def get_latest_news():
@@ -56,3 +55,4 @@ if __name__ == "__main__":
     post_to_facebook(post_text, link)
   else:
     print("No news found.")
+  
