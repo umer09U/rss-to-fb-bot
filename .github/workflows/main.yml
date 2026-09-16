@@ -1,0 +1,30 @@
+name: RSS to Facebook Bot
+
+on:
+  schedule:
+    - cron: '0 */2 * * *'  # یہ ہر 2 گھنٹے بعد خود بخود چلے گا
+  workflow_dispatch:      # اس سے آپ جب چاہیں ہاتھ سے بھی رن کر سکتے ہیں
+
+jobs:
+  run-bot:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.10'
+
+      - name: Install dependencies
+        run: |
+          pip install feedparser requests
+
+      - name: Run bot script
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          FB_PAGE_ACCESS_TOKEN: ${{ secrets.FB_PAGE_ACCESS_TOKEN }}
+          FB_PAGE_ID: ${{ secrets.FB_PAGE_ID }}
+        run: |
+          python main.py
